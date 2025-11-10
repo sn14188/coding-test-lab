@@ -1,4 +1,4 @@
-def solution(arr1, arr2):
+def solution(arr1: list[list[int]], arr2: list[list[int]]) -> list[list[int]]:
     """
     example:
     arr1   arr2   return
