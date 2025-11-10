@@ -4,7 +4,7 @@ def solution(s: str) -> str:
     nums = []
     for num_str in nums_str:
         nums.append(int(num_str))
-        
+
     return f"{min(nums)} {max(nums)}"
 
 
