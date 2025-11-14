@@ -1,10 +1,11 @@
 from itertools import permutations
 
+POSSIBLE_OPERATORS = ["+", "-", "*"]
+
 
 def solution(expression):
-    possible_operators = ["+", "-", "*"]
     used_operators = []
-    for operator in possible_operators:
+    for operator in POSSIBLE_OPERATORS:
         if operator in expression:
             used_operators.append(operator)
 
@@ -38,11 +39,13 @@ def solution(expression):
                     curr_operator = curr_operators.pop(0)
 
                     if curr_operator == "+":
-                        evaluated_operands.append(operand_1 + operand_2)
+                        result = operand_1 + operand_2
                     elif curr_operator == "-":
-                        evaluated_operands.append(operand_1 - operand_2)
+                        result = operand_1 - operand_2
                     elif curr_operator == "*":
-                        evaluated_operands.append(operand_1 * operand_2)
+                        result = operand_1 * operand_2
+
+                    evaluated_operands.append(result)
                 else:
                     evaluated_operands.append(curr_operands.pop(0))
                     remaining_operators.append(curr_operators.pop(0))
