@@ -3,7 +3,7 @@ from itertools import permutations
 POSSIBLE_OPERATORS = ["+", "-", "*"]
 
 
-def solution(expression):
+def solution(expression: str) -> int:
     used_operators = []
     for operator in POSSIBLE_OPERATORS:
         if operator in expression:
