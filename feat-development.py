@@ -1,24 +1,25 @@
+from collections import deque
 import math
 import time
 
 
 def solution(progresses: list[int], speeds: list[int]) -> list[int]:
-    days_left = []
+    q = deque()
     for i in range(len(progresses)):
         day_left = math.ceil((100 - progresses[i]) / speeds[i])
-        days_left.append(day_left)
+        q.append(day_left)
 
     answer = []
-    front = days_left[0]
+    front = q[0]
     counter = 0
-    while days_left:
-        if front >= days_left[0]:
-            days_left.pop(0)
+    while q:
+        if front >= q[0]:
+            q.popleft()
             counter += 1
         else:
             answer.append(counter)
             counter = 0
-            front = days_left[0]
+            front = q[0]
 
     answer.append(counter)
 
