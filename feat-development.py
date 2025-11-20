@@ -1,24 +1,25 @@
+import math
+
+
 def solution(progresses: list[int], speeds: list[int]) -> list[int]:
-    progresses_copy = progresses[:]
-    speeds_copy = speeds[:]
+    days_left = []
+    for i in range(len(progresses)):
+        day_left = math.ceil((100 - progresses[i]) / speeds[i])
+        days_left.append(day_left)
 
     answer = []
-    while progresses_copy:
-        for i in range(len(progresses_copy)):
-            if progresses_copy[i] >= 100:
-                continue
-            else:
-                progresses_copy[i] += speeds_copy[i]
-
-        head = progresses_copy[0]
-        if head >= 100:
-            counter = 0
-            while progresses_copy and progresses_copy[0] >= 100:
-                progresses_copy.pop(0)
-                speeds_copy.pop(0)
-                counter += 1
-
+    front = days_left[0]
+    counter = 0
+    while days_left:
+        if front >= days_left[0]:
+            days_left.pop(0)
+            counter += 1
+        else:
             answer.append(counter)
+            counter = 0
+            front = days_left[0]
+
+    answer.append(counter)
 
     return answer
 
