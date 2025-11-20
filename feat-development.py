@@ -1,4 +1,5 @@
 import math
+import time
 
 
 def solution(progresses: list[int], speeds: list[int]) -> list[int]:
@@ -24,7 +25,12 @@ def solution(progresses: list[int], speeds: list[int]) -> list[int]:
     return answer
 
 
+start = time.time()
 assert solution([93, 30, 55], [1, 30, 5]) == [2, 1]
 assert solution([95, 90, 99, 99, 80, 99], [1, 1, 1, 1, 1, 1]) == [1, 3, 2]
+end = time.time()
 
+print("************")
 print("All tests passed!")
+print(f"Duration: {end - start:.6f} seconds")
+print("************")
