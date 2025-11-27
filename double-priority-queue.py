@@ -1,29 +1,68 @@
 import time
+import heapq
 
 
 def solution(operations: list[str]) -> list[int]:
-    answer = []
+    min_heap = []
+    max_heap = []
+    counter = dict()
 
     for operation in operations:
         elems = operation.split()
         command, num = elems[0], int(elems[1])
 
         if command == "I":
-            answer.append(num)
-        elif command == "D":
-            if not answer:
-                pass
-            elif num == 1:
-                max_num = max(answer)
-                answer.remove(max_num)
-            elif num == -1:
-                min_num = min(answer)
-                answer.remove(min_num)
+            heapq.heappush(min_heap, num)
+            heapq.heappush(max_heap, -num)
+            if num in counter:
+                counter[num] += 1
+            else:
+                counter[num] = 1
 
-    if not answer:
+        elif command == "D":
+            if not min_heap:
+                continue
+            elif num == -1:
+                while min_heap:
+                    min_num = min_heap[0]
+                    if counter[min_num] == 0:
+                        heapq.heappop(min_heap)
+                    else:
+                        break
+
+                if min_heap:
+                    min_num = heapq.heappop(min_heap)
+                    counter[min_num] -= 1
+            elif num == 1:
+                while max_heap:
+                    max_num = -max_heap[0]
+                    if counter[max_num] == 0:
+                        heapq.heappop(max_heap)
+                    else:
+                        break
+
+                if max_heap:
+                    max_num = -heapq.heappop(max_heap)
+                    counter[max_num] -= 1
+
+    while min_heap:
+        min_num = min_heap[0]
+        if counter[min_num] == 0:
+            heapq.heappop(min_heap)
+        else:
+            break
+
+    while max_heap:
+        max_num = -max_heap[0]
+        if counter[max_num] == 0:
+            heapq.heappop(max_heap)
+        else:
+            break
+
+    if not min_heap:
         return [0, 0]
 
-    return [max(answer), min(answer)]
+    return [-max_heap[0], min_heap[0]]
 
 
 start = time.time()
