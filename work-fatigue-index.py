@@ -53,15 +53,35 @@ def test_max_heap(elems: list[int]) -> list[int]:
     for elem in elems:
         max_heap.push(elem)
 
+    max_heap.pop()
+
     return max_heap.elems
 
 
-assert test_max_heap([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [10, 9, 6, 7, 8, 2, 5, 1, 4, 3]
-assert test_max_heap([-1, 2, 3, 4, 5, 6]) == [6, 4, 5, -1, 3, 2]
+assert test_max_heap([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [9, 8, 6, 7, 3, 2, 5, 1, 4]
+assert test_max_heap([-1, 2, 3, 4, 5, 6]) == [5, 4, 2, -1, 3]
 
 
 def solution(n: int, works: list[int]) -> int:
+    max_heap = MaxHeap()
+    for work in works:
+        max_heap.push(work)
+
+    while n > 0:
+        work = max_heap.pop()
+        if work is None or work == 0:
+            break
+
+        max_heap.push(work - 1)
+        n -= 1
+
     answer = 0
+    while True:
+        work = max_heap.pop()
+        if work is None:
+            break
+
+        answer += work**2
     return answer
 
 
