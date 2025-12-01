@@ -4,47 +4,52 @@ class MaxHeap:
 
     def push(self, elem):
         self.elems.append(elem)
-        self.heapify_up(len(self.elems) - 1)
+        self._heapify_up(len(self.elems) - 1)
 
     def pop(self):
         if not self.elems:
             return None
 
-        max_elem = self.elems[0]
-        last_elem = self.elems.pop()
+        max_val = self.elems[0]
+        last_val = self.elems.pop()
 
         if self.elems:
-            self.elems[0] = last_elem
-            self.heapify_down(0)
+            self.elems[0] = last_val
+            self._heapify_down(0)
 
-        return max_elem
+        return max_val
 
-    def heapify_up(self, idx):
+    def _heapify_up(self, idx):
+        elems = self.elems
+
         while idx > 0:
             parent = (idx - 1) // 2
 
-            if self.elems[idx] <= self.elems[parent]:
+            if elems[idx] <= elems[parent]:
                 break
 
-            self.elems[idx], self.elems[parent] = self.elems[parent], self.elems[idx]
+            elems[idx], elems[parent] = elems[parent], elems[idx]
             idx = parent
 
-    def heapify_down(self, idx):
+    def _heapify_down(self, idx):
+        elems = self.elems
+        size = len(elems)
+
         while True:
             largest = idx
             left = idx * 2 + 1
             right = idx * 2 + 2
 
-            if left < len(self.elems) and self.elems[largest] < self.elems[left]:
+            if left < size and elems[largest] < elems[left]:
                 largest = left
 
-            if right < len(self.elems) and self.elems[largest] < self.elems[right]:
+            if right < size and elems[largest] < elems[right]:
                 largest = right
 
             if largest == idx:
                 break
 
-            self.elems[idx], self.elems[largest] = self.elems[largest], self.elems[idx]
+            elems[idx], elems[largest] = elems[largest], elems[idx]
             idx = largest
 
 
