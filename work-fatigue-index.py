@@ -81,12 +81,9 @@ def solution(n: int, works: list[int]) -> int:
         n -= 1
 
     answer = 0
-    while True:
-        work = max_heap.pop()
-        if work is None:
-            break
-
+    for work in max_heap.elems:
         answer += work**2
+
     return answer
 
 
