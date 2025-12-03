@@ -1,7 +1,7 @@
 import math
 
 
-def solution(info: list[str]) -> list[int]:
+def solution(info: list[str], start: str) -> list[int]:
     edges = []
     nodes = set()
     for line in info:
@@ -12,8 +12,8 @@ def solution(info: list[str]) -> list[int]:
 
     dist = {node: math.inf for node in nodes}
     prev = {node: None for node in nodes}
-    dist["A"] = 0
-    prev["A"] = "A"
+    dist[start] = 0
+    prev[start] = start
 
     n = len(nodes)
     for _ in range(n - 1):
@@ -27,12 +27,12 @@ def solution(info: list[str]) -> list[int]:
         if dist[u] + w < dist[v]:
             return [-1]
 
-    answer = [dist[node] for node in sorted(nodes) if node != "A"]
+    answer = [dist[node] for node in sorted(nodes) if node != start]
 
     return answer
 
 
-assert solution(["A B 4", "A C 3", "B C -1", "C A -2"]) == [4, 3]
-assert solution(["A B 4", "A C 3", "B C -4", "C A -2"]) == [-1]
+assert solution(["A B 4", "A C 3", "B C -1", "C A -2"], "A") == [4, 3]
+assert solution(["A B 4", "A C 3", "B C -4", "C A -2"], "A") == [-1]
 
 print("All tests passed!")
