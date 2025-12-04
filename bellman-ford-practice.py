@@ -3,31 +3,28 @@ import math
 
 def solution(info: list[str], start: str) -> list[int]:
     edges = []
-    nodes = set()
+    vertices = set()
     for line in info:
         u, v, w_str = line.split()
         edges.append((u, v, int(w_str)))
-        nodes.add(u)
-        nodes.add(v)
+        vertices.add(u)
+        vertices.add(v)
 
-    dist = {node: math.inf for node in nodes}
-    prev = {node: None for node in nodes}
+    dist = {vertex: math.inf for vertex in vertices}
     dist[start] = 0
-    prev[start] = start
 
-    n = len(nodes)
+    n = len(vertices)
     for _ in range(n - 1):
         for edge in edges:
             u, v, w = edge
             if dist[u] + w < dist[v]:
                 dist[v] = dist[u] + w
-                prev[v] = u
 
     for u, v, w in edges:
         if dist[u] + w < dist[v]:
             return [-1]
 
-    answer = [dist[node] for node in sorted(nodes) if node != start]
+    answer = [dist[vertex] for vertex in sorted(vertices) if vertex != start]
 
     return answer
 
