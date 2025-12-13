@@ -1,4 +1,5 @@
 def solution(info: list[int], edges: list[list[int]]) -> int:
+    # tree building
     tree = {}
     for edge in edges:
         key, val = edge[0], edge[1]
@@ -8,6 +9,7 @@ def solution(info: list[int], edges: list[list[int]]) -> int:
         else:
             tree[key].append(val)
 
+    # search
     def dfs(curr, candidates, sheep, wolves):
         if info[curr] == 0:
             sheep += 1
