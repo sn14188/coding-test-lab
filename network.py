@@ -1,30 +1,44 @@
 # problem url: https://school.programmers.co.kr/learn/courses/30/lessons/43162
 
 
+class Queue:
+    def __init__(self):
+        self.items = []
+        self.front = 0
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        elem = self.items[self.front]
+        self.front += 1
+        return elem
+
+    def is_empty(self):
+        return self.front >= len(self.items)
+
+
 def solution(n: int, computers: list[list[int]]) -> int:
     visited = [False] * n
 
     def bfs(start_node):
-        queue = []
-        queue.append(start_node)
+        queue = Queue()
+        queue.push(start_node)
         visited[start_node] = True
 
-        while queue:
-            curr = queue.pop(0)
+        while not queue.is_empty():
+            curr = queue.pop()
 
-            for other_computer in range(n):
-                if (
-                    computers[curr][other_computer] == 1
-                    and visited[other_computer] == False
-                ):
-                    queue.append(other_computer)
-                    visited[other_computer] = True
+            for i in range(n):
+                if computers[curr][i] == 1 and visited[i] == False:
+                    queue.push(i)
+                    visited[i] = True
 
     answer = 0
-    for computer in range(n):
-        if visited[computer] == False:
+    for i in range(n):
+        if visited[i] == False:
             answer += 1
-            bfs(computer)
+            bfs(i)
 
     return answer
 
