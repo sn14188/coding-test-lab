@@ -8,7 +8,7 @@ input = sys.stdin.readline
 def solution():
     T = int(input())
 
-    for tc in range(T):
+    for _ in range(T):
         N, M, W = map(int, input().split())
 
         edges = []
