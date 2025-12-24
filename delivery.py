@@ -3,9 +3,7 @@
 
 def solution(N: int, road: list[list[int]], K: int) -> int:
     graph = dict()
-    for r in road:
-        dep, arr, time = r[0], r[1], r[2]
-
+    for dep, arr, time in road:
         if dep not in graph:
             graph[dep] = [(arr, time)]
         else:
@@ -32,12 +30,12 @@ def solution(N: int, road: list[list[int]], K: int) -> int:
         if curr == -1:
             break
 
-        visited[curr] = True
-
         if curr in graph:
             for arr, time in graph[curr]:
                 if dist[arr] > dist[curr] + time:
                     dist[arr] = dist[curr] + time
+
+        visited[curr] = True
 
     answer = 0
     for d in dist:
