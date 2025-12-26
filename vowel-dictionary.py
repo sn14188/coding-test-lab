@@ -4,7 +4,7 @@
 def solution(word: str) -> int:
     vowels = ["A", "E", "I", "O", "U"]
 
-    def dfs(curr, counter):
+    def dfs(curr: str, counter: int):
         if curr:
             counter += 1
             if curr == word:
