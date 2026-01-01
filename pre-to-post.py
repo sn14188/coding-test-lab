@@ -2,8 +2,22 @@
 
 
 def solution(nums: list[int]) -> list[int]:
-    answer = []
-    return answer
+    if not nums:
+        return []
+
+    root = nums[0]
+    rest = nums[1:]
+
+    left = []
+    right = []
+
+    for num in rest:
+        if num < root:
+            left.append(num)
+        else:
+            right.append(num)
+
+    return solution(left) + solution(right) + [root]
 
 
 assert solution([50, 30, 24, 5, 28, 45, 98, 52, 60]) == [
