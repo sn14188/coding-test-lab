@@ -18,6 +18,7 @@ def solution(bridge_length: int, weight: int, truck_weights: list[int]) -> int:
             bridge_weight += truck_weight
         else:
             bridge.append(0)
+            bridge_weight += 0  # meaningless
 
     return duration
 
