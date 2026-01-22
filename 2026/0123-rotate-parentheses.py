@@ -2,11 +2,6 @@
 
 
 def solution(s: str) -> int:
-    candidates = []
-    for i in range(len(s)):
-        candidate = s[i:] + s[:i]
-        candidates.append(candidate)
-
     def is_right(parens: str) -> bool:
         pairs = {")": "(", "]": "[", "}": "{"}
         stack = []
@@ -25,7 +20,9 @@ def solution(s: str) -> int:
         return not stack
 
     answer = 0
-    for candidate in candidates:
+    for i in range(len(s)):
+        candidate = s[i:] + s[:i]
+
         if is_right(candidate):
             answer += 1
 
