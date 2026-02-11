@@ -3,6 +3,11 @@
 from itertools import permutations
 
 
+def solution(numbers: list[int]) -> str:
+    answer = ""
+    return answer
+
+
 # selection sort
 def solution_ss(numbers: list[int]) -> str:
     str_numbers = list(map(str, numbers))
@@ -35,4 +40,5 @@ def solution_bf(numbers: list[int]) -> str:
 
 assert solution([6, 10, 2]) == "6210"
 assert solution([3, 30, 34, 5, 9]) == "9534330"
+
 print("All tests passed!")
