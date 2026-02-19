@@ -2,7 +2,33 @@
 
 
 def solution(files: list[str]) -> list[str]:
+    def split_file_name(file_name: str) -> tuple[str, str]:
+        index = 0
+        head_part = ""
+
+        while index < len(file_name) and not file_name[index].isdigit():
+            head_part += file_name[index]
+            index += 1
+
+        number_part = ""
+        while index < len(file_name) and file_name[index].isdigit():
+            number_part += file_name[index]
+            index += 1
+
+        return head_part, number_part
+
+    parsed_files = []
+
+    for file_name in files:
+        head_part, number_part = split_file_name(file_name)
+        parsed_files.append((head_part.lower(), int(number_part), file_name))
+
+    parsed_files.sort(key=lambda item: (item[0], item[1]))
+
     answer = []
+    for item in parsed_files:
+        answer.append(item[2])
+
     return answer
 
 
