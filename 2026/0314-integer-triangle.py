@@ -10,7 +10,7 @@ def max_triangle_path(triangle: list[list[int]]) -> int:
             if i == 0:
                 curr_row[i] += prev_row[0]
             elif i == len(curr_row) - 1:
-                curr_row[i] += prev_row[len(prev_row) - 1]
+                curr_row[i] += prev_row[-1]
             else:
                 curr_row[i] += max(prev_row[i - 1], prev_row[i])
 
