@@ -7,11 +7,7 @@ def max_triangle_path(triangle: list[list[int]]) -> int:
 
 assert (
     max_triangle_path(
-        [7],
-        [3, 8],
-        [8, 1, 0],
-        [2, 7, 4, 4],
-        [4, 5, 2, 6, 5],
+        [[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]],
     )
     == 30
 )
