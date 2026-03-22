@@ -4,13 +4,13 @@
 def solution(n: int, costs: list[list[int]]) -> int:
     parents = [i for i in range(n)]
 
-    def find(x):
+    def find(x: int) -> int:
         if parents[x] != x:
             return find(parents[x])
 
         return parents[x]
 
-    def union(a, b):
+    def union(a: int, b: int) -> None:
         parent_1 = find(a)
         parent_2 = find(b)
 
