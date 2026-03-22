@@ -10,12 +10,10 @@ def solution(people: list[int], limit: int) -> int:
     answer = 0
     while left <= right:
         if people[left] + people[right] <= limit:
-            answer += 1
             left += 1
-            right -= 1
-        else:
-            answer += 1
-            right -= 1
+
+        answer += 1
+        right -= 1
 
     return answer
 
