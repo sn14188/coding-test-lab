@@ -1,4 +1,4 @@
-# problem url: https://www.acmicpc.net/problem/1932
+# problem url: https://school.programmers.co.kr/learn/courses/30/lessons/42861
 
 
 def solution(n: int, costs: list[list[int]]) -> int:
