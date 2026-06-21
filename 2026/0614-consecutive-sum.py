@@ -5,13 +5,13 @@ def solution(n: int) -> int:
     answer = 0
 
     for i in range(1, n + 1):
-        temp = 0
+        running_sum = 0
         for j in range(i, n + 1):
-            temp += j
-            if temp == n:
+            running_sum += j
+            if running_sum == n:
                 answer += 1
                 break
-            elif temp > n:
+            elif running_sum > n:
                 break
 
     return answer
