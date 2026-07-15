@@ -22,10 +22,47 @@
 # - 최다 주문 조합이 여러 개면 모두 포함
 
 
+from itertools import combinations
+
+
 def solution(orders: list[str], course: list[int]) -> list[str]:
     answer = []
 
-    return answer
+    counts = dict()
+    for order in orders:
+        order_sorted = sorted(order)
+
+        for size in course:
+            if len(order_sorted) < size:
+                continue
+
+            for combination in combinations(order_sorted, size):
+                combination_string = "".join(combination)
+                if combination_string in counts:
+                    counts[combination_string] += 1
+                else:
+                    counts[combination_string] = 1
+
+    for size in course:
+        size_counts = {}
+        for combination_string, count in counts.items():
+            if len(combination_string) == size:
+                size_counts[combination_string] = count
+
+        if not size_counts:
+            continue
+
+        max_count = max(size_counts.values())
+        if max_count < 2:
+            continue
+
+        for combination_string, count in size_counts.items():
+            if count == max_count:
+                answer.append(combination_string)
+
+    answer_sorted = sorted(answer)
+
+    return answer_sorted
 
 
 assert solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2, 3, 4]) == [
